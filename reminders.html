@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reminders - SolatTime</title>
+    <script src="time.js"></script>
+    <script src="theme.js"></script>
+    <script src="moon.js"></script>
+    <script src="sky.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="hero">
+        <canvas id="skyCanvas" aria-hidden="true"></canvas>
+    <header>
+        <h1>SolatTime</h1>
+        <p>Your daily prayer companion</p>
+        <div class="header-clock">
+            <span id="clockLabel">Malaysia time</span>
+            <time id="headerClock" aria-live="off">--:--:--</time>
+        </div>
+    </header>
+
+    <nav aria-label="Main navigation">
+        <a href="index.html">Prayer Times</a>
+        <a href="reminders.html" aria-current="page">My Reminders</a>
+    </nav>
+    </div>
+
+    <div class="header-divider" aria-hidden="true"></div>
+
+    <main class="reminders-page">
+        <section class="card">
+            <h2>My Activity Reminders</h2>
+
+            <div class="controls">
+                <div class="field">
+                    <label for="activity">Reminder type</label>
+                    <select id="activity">
+                        <option value="">Select an activity</option>
+                        <option value="Subuh">Subuh</option>
+                        <option value="Zohor">Zohor</option>
+                        <option value="Asar">Asar</option>
+                        <option value="Maghrib">Maghrib</option>
+                        <option value="Isyak">Isyak</option>
+                        <option value="Read Al-Quran">Read Al-Quran</option>
+                        <option value="Zikir">Zikir</option>
+                        <option value="__custom__">Others — write your own</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="reminderTime">Time</label>
+                    <input type="time" id="reminderTime">
+                </div>
+                <div class="field" id="customActivityField" hidden>
+                    <label for="customActivity">Custom reminder</label>
+                    <input id="customActivity" maxlength="120" placeholder="Write your reminder">
+                </div>
+                <div class="field">
+                    <label for="scheduleType">Schedule</label>
+                    <select id="scheduleType">
+                        <option value="daily">Daily</option>
+                        <option value="day">Specific day</option>
+                        <option value="week">Specific week</option>
+                        <option value="month">Specific month</option>
+                        <option value="weekly">Repeat weekly</option>
+                        <option value="monthly">Repeat monthly</option>
+                    </select>
+                </div>
+                <div class="field" id="scheduleDateField" hidden>
+                    <label for="scheduleDate" id="scheduleDateLabel">Date</label>
+                    <input type="date" id="scheduleDate">
+                </div>
+                <div class="field" id="weekdayField" hidden>
+                    <label for="weekday">Weekday</label>
+                    <select id="weekday">
+                        <option value="">Choose weekday</option>
+                        <option value="1">Monday</option>
+                        <option value="2">Tuesday</option>
+                        <option value="3">Wednesday</option>
+                        <option value="4">Thursday</option>
+                        <option value="5">Friday</option>
+                        <option value="6">Saturday</option>
+                        <option value="0">Sunday</option>
+                    </select>
+                </div>
+                <div class="field" id="monthDayField" hidden>
+                    <label for="monthDay">Day of month</label>
+                    <input type="number" id="monthDay" min="1" max="31" step="1" placeholder="1–31">
+                </div>
+                <button id="addBtn">Add Reminder</button>
+                <button type="button" id="cancelEditBtn" class="secondary-button" hidden>Cancel edit</button>
+            </div>
+
+            <p id="scheduleHint" class="mode-hint">Every day at the selected time.</p>
+
+            <div class="sky-mode reminder-sky-mode">
+                <span class="mode-label" id="skyModeLabel">Sky animation</span>
+                <div class="mode-buttons" role="group" aria-labelledby="skyModeLabel" aria-describedby="skyModeHint">
+                    <button type="button" id="realTimeBtn" aria-pressed="true">Real time</button>
+                    <button type="button" id="simulationBtn" aria-pressed="false">Simulation</button>
+                </div>
+            </div>
+            <p class="mode-hint" id="skyModeHint">Sky follows the loaded location's local time.</p>
+            <p id="message" role="status"></p>
+        </section>
+
+        <section class="card">
+            <h2>Saved Reminders</h2>
+            <ul id="reminderList">
+                <li>No reminders added yet.</li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="reminders.js"></script>
+</body>
+
+</html>

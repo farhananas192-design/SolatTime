@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolatTime</title>
+    <script src="time.js"></script>
+    <script src="theme.js"></script>
+    <script src="moon.js"></script>
+    <script src="sky.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="hero">
+        <canvas id="skyCanvas" aria-hidden="true"></canvas>
+    <header>
+        <h1>SolatTime</h1>
+        <p>Your daily prayer companion</p>
+        <div class="header-clock">
+            <span id="clockLabel">Malaysia time</span>
+            <time id="headerClock" aria-live="off">--:--:--</time>
+        </div>
+    </header>
+
+    <nav aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Prayer Times</a>
+        <a href="reminders.html">My Reminders</a>
+    </nav>
+    </div>
+
+    <div class="header-divider" aria-hidden="true"></div>
+
+    <main class="index-page">
+        <section class="card">
+            <h2>Daily Prayer Times</h2>
+
+            <div class="field recent-locations">
+                <label for="recentLocations">Recent locations</label>
+                <select id="recentLocations" disabled><option>No recent locations yet</option></select>
+            </div>
+            <div class="controls">
+                <div class="field">
+                    <label for="country">Country</label>
+                    <select id="country"><option>Malaysia</option></select>
+                </div>
+                <div class="field">
+                    <label for="state">State / region</label>
+                    <select id="state"><option>Kuala Lumpur</option></select>
+                </div>
+                <div class="field">
+                    <label for="city">City / town</label>
+                    <select id="city"><option>Kuala Lumpur</option></select>
+                </div>
+                <div class="field" id="otherCityField" hidden>
+                    <label for="otherCity">City / town name</label>
+                    <input id="otherCity" maxlength="120" autocomplete="off">
+                </div>
+                <div class="field" id="zoneField">
+                    <label for="location">JAKIM prayer zone</label>
+                    <select id="location"><option value="WLY01">WLY01 · Kuala Lumpur</option></select>
+                </div>
+                <button id="searchBtn">Get Prayer Times</button>
+                <div class="sky-mode">
+                    <span class="mode-label" id="skyModeLabel">Sky animation</span>
+                    <div class="mode-buttons" role="group" aria-labelledby="skyModeLabel" aria-describedby="skyModeHint">
+                        <button type="button" id="realTimeBtn" aria-pressed="true">Real time</button>
+                        <button type="button" id="simulationBtn" aria-pressed="false">Simulation</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-feedback">
+                <p id="locationStatus" role="status">Loading locations...</p>
+                <button type="button" id="retryLocations">Retry locations</button>
+            </div>
+            <p class="mode-hint" id="skyModeHint">Sky follows the loaded location's local time.</p>
+
+            <p class="prayer-source" id="prayerSource"></p>
+            <div id="prayerTimes" role="status">
+                <p>Prayer times will appear here.</p>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Suggested Activities</h2>
+            <p id="suggestion">
+                Activity suggestions will appear here.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Next Prayer Countdown</h2>
+            <div id="countdown" role="timer" aria-label="Time until the next prayer">
+                Countdown will appear here.
+            </div>
+        </section>
+    </main>
+    <script src="location.js"></script>
+    <script src="prayer.js"></script>
+</body>
+
+</html>
